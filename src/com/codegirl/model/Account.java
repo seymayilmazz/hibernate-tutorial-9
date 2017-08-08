@@ -20,7 +20,8 @@ public class Account {
     @Enumerated
     private AccountStatus accountStatus;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id", unique = true)
     private User user;
 
     public Account() {

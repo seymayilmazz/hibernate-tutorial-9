@@ -8,6 +8,12 @@ import java.util.List;
  * Created by Şeyma Yılmaz on 6.8.2017.
  */
 @Entity
+@NamedQueries(
+        {
+                @NamedQuery(name = "User.findAll", query = "from User"),
+                @NamedQuery(name = "User.findByName", query = "from User where firstName = :name")
+        }
+)
 public class User {
 
     @Id
@@ -18,7 +24,7 @@ public class User {
     private String lastName;
     private int age;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Account account;
 
     @OneToMany(mappedBy = "user")
